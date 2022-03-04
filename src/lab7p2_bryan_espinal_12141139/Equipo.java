@@ -5,6 +5,13 @@
  */
 package lab7p2_bryan_espinal_12141139;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author bryan
@@ -19,7 +26,6 @@ public class Equipo {
     int golescontra;
     int diferencia;
     int pts;
-
     public Equipo(String nombre, int parjuga, int pargana, int parempa, int parperdi, int golesfabor, int golescontra, int diferencia, int pts) {
         this.nombre = nombre;
         this.parjuga = parjuga;
@@ -106,10 +112,10 @@ public class Equipo {
     public void setPts(int pts) {
         this.pts = pts;
     }
-
     @Override
     public String toString() {
-        return  nombre + "," + parjuga + ", pargana=" + pargana + ", parempa=" + parempa + ", parperdi=" + parperdi + ", golesfabor=" + golesfabor + ", golescontra=" + golescontra + ", diferencia=" + diferencia + ", pts=" + pts + '}';
+        return  nombre + "," + parjuga + "," + pargana + "," + parempa + "," + parperdi + "," + golesfabor + "," + golescontra + "," + diferencia + "," + pts + "\n";
     }
+        //metodos de administracion
     
 }
