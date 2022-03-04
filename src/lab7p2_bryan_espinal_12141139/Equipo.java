@@ -114,7 +114,7 @@ public class Equipo {
     }
     @Override
     public String toString() {
-        return  nombre + "," + parjuga + "," + pargana + "," + parempa + "," + parperdi + "," + golesfabor + "," + golescontra + "," + diferencia + "," + pts + "\n";
+        return  nombre;
     }
         //metodos de administracion
     
