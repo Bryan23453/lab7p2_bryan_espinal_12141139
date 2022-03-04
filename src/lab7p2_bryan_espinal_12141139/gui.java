@@ -340,7 +340,7 @@ public class gui extends javax.swing.JFrame {
     file.showOpenDialog(this);
     File abre=file.getSelectedFile();
         if (abre!=null) {
-            archivo=abre;
+            archivo=file.getSelectedFile();
             boolean b=cargarArchivo();
             if (b) {
                 JOptionPane.showMessageDialog(this, "Datos Recuperdos Exitosamente");
@@ -426,6 +426,11 @@ public class gui extends javax.swing.JFrame {
                 equipos.get(jbsim2.getSelectedIndex()).setParjuga(1);
                 equipos.get(jbsim2.getSelectedIndex()).setPargana(1);
                 equipos.get(jbsim2.getSelectedIndex()).setPts(3);
+                try {
+                    escribirArchivo2();
+                } catch (IOException ex) {
+                    Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }else{
                 if (equip1>equip2) {
                     JOptionPane.showMessageDialog(this, " Gana El Equipo "+equipos.get(jbsim1.getSelectedIndex()).getNombre()+" "+equip1+" a "+equip2);
@@ -438,6 +443,11 @@ public class gui extends javax.swing.JFrame {
                 equipos.get(jbsim1.getSelectedIndex()).setParjuga(1);
                 equipos.get(jbsim1.getSelectedIndex()).setPargana(1);
                 equipos.get(jbsim1.getSelectedIndex()).setPts(3);
+                    try {
+                        escribirArchivo2();
+                    } catch (IOException ex) {
+                        Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(this, " Empate "+equip1+" a "+equip2);
                 equipos.get(jbsim2.getSelectedIndex()).setGolescontra(equip2);
@@ -450,6 +460,11 @@ public class gui extends javax.swing.JFrame {
                 equipos.get(jbsim1.getSelectedIndex()).setParempa(1);
                 equipos.get(jbsim1.getSelectedIndex()).setPts(1);
                 equipos.get(jbsim2.getSelectedIndex()).setPts(1);
+                    try {
+                        escribirArchivo2();
+                    } catch (IOException ex) {
+                        Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }else{
@@ -537,7 +552,6 @@ public class gui extends javax.swing.JFrame {
                     b.write(e.getGolescontra() + ";");
                     b.write(e.getDiferencia() + ";");
                     b.write(e.getPts() + ";");
-                    b.write("\n");
                 }
                 b.flush();
             } catch (Exception ex) {
@@ -550,7 +564,7 @@ public class gui extends javax.swing.JFrame {
             FileWriter ar = null;
             BufferedWriter b = null;
             try {
-                ar = new FileWriter(archivo, true);
+                ar = new FileWriter(archivo, false);
                 b = new BufferedWriter(ar);
                 for (Equipo e : equipos) {
                     b.write(e.getNombre() + ";");
@@ -562,7 +576,6 @@ public class gui extends javax.swing.JFrame {
                     b.write(e.getGolescontra() + ";");
                     b.write(e.getDiferencia() + ";");
                     b.write(e.getPts() + ";");
-                    b.write("\n");
                 }
                 b.flush();
             } catch (Exception ex) {
