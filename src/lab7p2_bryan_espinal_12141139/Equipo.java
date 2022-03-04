@@ -54,7 +54,7 @@ public class Equipo {
     }
 
     public void setParjuga(int parjuga) {
-        this.parjuga = parjuga;
+        this.parjuga =+ parjuga;
     }
 
     public int getPargana() {
@@ -62,7 +62,7 @@ public class Equipo {
     }
 
     public void setPargana(int pargana) {
-        this.pargana = pargana;
+        this.pargana =+ pargana;
     }
 
     public int getParempa() {
@@ -70,7 +70,7 @@ public class Equipo {
     }
 
     public void setParempa(int parempa) {
-        this.parempa = parempa;
+        this.parempa =+ parempa;
     }
 
     public int getParperdi() {
@@ -78,7 +78,7 @@ public class Equipo {
     }
 
     public void setParperdi(int parperdi) {
-        this.parperdi = parperdi;
+        this.parperdi =+ parperdi;
     }
 
     public int getGolesfabor() {
@@ -86,7 +86,7 @@ public class Equipo {
     }
 
     public void setGolesfabor(int golesfabor) {
-        this.golesfabor = golesfabor;
+        this.golesfabor =+ golesfabor;
     }
 
     public int getGolescontra() {
@@ -94,7 +94,7 @@ public class Equipo {
     }
 
     public void setGolescontra(int golescontra) {
-        this.golescontra = golescontra;
+        this.golescontra =+ golescontra;
     }
 
     public int getDiferencia() {
@@ -110,7 +110,7 @@ public class Equipo {
     }
 
     public void setPts(int pts) {
-        this.pts = pts;
+        this.pts =+ pts;
     }
     @Override
     public String toString() {

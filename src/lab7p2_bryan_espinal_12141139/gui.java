@@ -385,7 +385,7 @@ public class gui extends javax.swing.JFrame {
             try {
                 escribirArchivo2();
             } catch (IOException ex) {
-                Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
         }else{
              JOptionPane.showMessageDialog(this, "Selecione Un dato");
@@ -415,6 +415,43 @@ public class gui extends javax.swing.JFrame {
             Random r=new Random();
             int equip1=1+r.nextInt(5);
             int equip2=1+r.nextInt(5);
+            if (equip1<equip2) {
+                JOptionPane.showMessageDialog(this, " Gana El Equipo  "+equipos.get(jbsim2.getSelectedIndex()).getNombre()+" "+equip2+" a "+equip1);
+                equipos.get(jbsim1.getSelectedIndex()).setGolescontra(equip2);
+                equipos.get(jbsim1.getSelectedIndex()).setGolesfabor(equip1);
+                equipos.get(jbsim1.getSelectedIndex()).setParjuga(1);
+                equipos.get(jbsim1.getSelectedIndex()).setParperdi(1);
+                equipos.get(jbsim2.getSelectedIndex()).setGolescontra(equip1);
+                equipos.get(jbsim2.getSelectedIndex()).setGolesfabor(equip2);
+                equipos.get(jbsim2.getSelectedIndex()).setParjuga(1);
+                equipos.get(jbsim2.getSelectedIndex()).setPargana(1);
+                equipos.get(jbsim2.getSelectedIndex()).setPts(3);
+            }else{
+                if (equip1>equip2) {
+                    JOptionPane.showMessageDialog(this, " Gana El Equipo "+equipos.get(jbsim1.getSelectedIndex()).getNombre()+" "+equip1+" a "+equip2);
+                equipos.get(jbsim2.getSelectedIndex()).setGolescontra(equip2);
+                equipos.get(jbsim2.getSelectedIndex()).setGolesfabor(equip1);
+                equipos.get(jbsim2.getSelectedIndex()).setParjuga(1);
+                equipos.get(jbsim2.getSelectedIndex()).setParperdi(1);
+                equipos.get(jbsim1.getSelectedIndex()).setGolescontra(equip1);
+                equipos.get(jbsim1.getSelectedIndex()).setGolesfabor(equip2);
+                equipos.get(jbsim1.getSelectedIndex()).setParjuga(1);
+                equipos.get(jbsim1.getSelectedIndex()).setPargana(1);
+                equipos.get(jbsim1.getSelectedIndex()).setPts(3);
+                }else{
+                    JOptionPane.showMessageDialog(this, " Empate "+equip1+" a "+equip2);
+                equipos.get(jbsim2.getSelectedIndex()).setGolescontra(equip2);
+                equipos.get(jbsim2.getSelectedIndex()).setGolesfabor(equip1);
+                equipos.get(jbsim2.getSelectedIndex()).setParjuga(1);
+                equipos.get(jbsim2.getSelectedIndex()).setParempa(1);
+                equipos.get(jbsim1.getSelectedIndex()).setGolescontra(equip1);
+                equipos.get(jbsim1.getSelectedIndex()).setGolesfabor(equip2);
+                equipos.get(jbsim1.getSelectedIndex()).setParjuga(1);
+                equipos.get(jbsim1.getSelectedIndex()).setParempa(1);
+                equipos.get(jbsim1.getSelectedIndex()).setPts(1);
+                equipos.get(jbsim2.getSelectedIndex()).setPts(1);
+                }
+            }
         }else{
             JOptionPane.showMessageDialog(this, "No Puede Selecionar El Mismo Equipo ");
         }
