@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -60,13 +61,19 @@ public class gui extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jToggleButton1.setText("Agregar");
         jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,7 +200,7 @@ public class gui extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Opiones Equipo", jPanel1);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -201,7 +208,7 @@ public class gui extends javax.swing.JFrame {
                 "Equipo", "PJ", "PG ", "PE ", "PP", "GF", "GC", "Diferencia ", "Pts"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tabla);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -221,10 +228,6 @@ public class gui extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Tabla De Posiciones", jPanel2);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("jButton1");
 
@@ -256,7 +259,7 @@ public class gui extends javax.swing.JFrame {
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(83, 83, 83)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Simulacion", jPanel3);
@@ -290,8 +293,9 @@ public class gui extends javax.swing.JFrame {
             equipos.add(new Equipo(nomequi.getText(),0,0,0,0,0,0,0,0));
             try {
                 escribirArchivo();
+                jbox();
             } catch (IOException ex) {
-                
+                JOptionPane.showMessageDialog(this, "Ocurrio Un error");
             }
             }else{
                 JOptionPane.showMessageDialog(this, "No puede Tener 2 Equipos Con Nombres Iguales");
@@ -308,6 +312,34 @@ public class gui extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Datos Recuperdos Exitosamente");
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        DefaultTableModel modelo2=new DefaultTableModel() ;
+        modelo2.addColumn("Equipo");
+        modelo2.addColumn("PJ");
+        modelo2.addColumn("PG");
+        modelo2.addColumn("PE");
+        modelo2.addColumn("PP");
+        modelo2.addColumn("GF");
+        modelo2.addColumn("GC");
+        modelo2.addColumn("Diferencia");
+        modelo2.addColumn("Pts");
+        
+        Object[] ob=new Object[9];
+        for (Equipo equi : equipos) {
+            ob[0]=equi.getNombre();
+            ob[1]=equi.getParjuga();
+            ob[2]=equi.getPargana();
+            ob[3]=equi.getParempa();
+            ob[4]=equi.getParperdi();
+            ob[5]=equi.getGolesfabor();
+            ob[6]=equi.getGolescontra();
+            ob[7]=equi.getDiferencia();
+            ob[8]=equi.getPts();
+            modelo2.addRow(ob);
+        }
+            tabla.setModel(modelo2);
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     /**
      * @param args the command line arguments
@@ -363,12 +395,12 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox<String> jdedit;
     private javax.swing.JComboBox<String> jdelim;
     private javax.swing.JTextPane nomequi;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
     
     public void escribirArchivo() throws IOException {
@@ -413,9 +445,19 @@ public class gui extends javax.swing.JFrame {
         }//FIN IF
     }
     public void jbox(){
+        jdedit.removeAllItems();
+        jdelim.removeAllItems();
         for (Equipo equip : equipos) {
            jdedit.addItem(equip.toString());
         }
-        jdelim.set
+        for (Equipo equip : equipos) {
+           jdelim.addItem(equip.toString());
+        }
+        for (Equipo equip : equipos) {
+           jdelim.addItem(equip.toString());
+        }
+        for (Equipo equip : equipos) {
+           jdelim.addItem(equip.toString());
+        }
     }
 }
