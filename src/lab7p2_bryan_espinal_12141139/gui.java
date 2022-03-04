@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,7 +55,7 @@ public class gui extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jdelim = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        edit = new javax.swing.JTextField();
         jdedit = new javax.swing.JComboBox<>();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jButton4 = new javax.swing.JButton();
@@ -108,7 +109,18 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
+        jdedit.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jdeditItemStateChanged(evt);
+            }
+        });
+
         jButton4.setText("Editar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setText("Ingrese Nuevo Nombre");
 
@@ -165,7 +177,7 @@ public class gui extends javax.swing.JFrame {
                                         .addComponent(jdedit, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(135, 135, 135)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,7 +199,7 @@ public class gui extends javax.swing.JFrame {
                                 .addGap(62, 62, 62)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
@@ -237,6 +249,11 @@ public class gui extends javax.swing.JFrame {
         jTabbedPane1.addTab("Tabla De Posiciones", jPanel2);
 
         jButton1.setText("Simular Partido");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jLabel6.setText("Primer Equipo");
 
@@ -376,6 +393,33 @@ public class gui extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        if (jdedit.getSelectedIndex()>=0 && edit.getText()!="") {
+            equipos.get(jdedit.getSelectedIndex()).setNombre(edit.getText());
+            JOptionPane.showMessageDialog(this, "Cambiado Exitosamente ");
+            jbox();
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione Un dato ");
+        }
+        
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jdeditItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jdeditItemStateChanged
+        if (jdedit.getSelectedIndex()>=0) {
+            edit.setText(equipos.get(jdedit.getSelectedIndex()).getNombre());
+        }
+    }//GEN-LAST:event_jdeditItemStateChanged
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if (jbsim1.getSelectedIndex()!=jbsim2.getSelectedIndex()) {
+            Random r=new Random();
+            int equip1=1+r.nextInt(5);
+            int equip2=1+r.nextInt(5);
+        }else{
+            JOptionPane.showMessageDialog(this, "No Puede Selecionar El Mismo Equipo ");
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -412,6 +456,7 @@ public class gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField edit;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -430,7 +475,6 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox<String> jbsim1;
     private javax.swing.JComboBox<String> jbsim2;
